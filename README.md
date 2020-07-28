@@ -1,1 +1,2 @@
 # autosummarization
+this repository includes two types of extraction summarization, one based on document embedding, the other based on textrank, sentence vector is created based on paper: a simple but tough to beat baseline for sentence embedding, without removding the 1st priciple component, related code could be found here: https://github.com/zangyuchen2008/a_simple_but_tough_to_beat_baseline_for_sentence_embeddings
