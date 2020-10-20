@@ -81,7 +81,7 @@ def get_textrank(sens_embedding, sens,tfidfs,para_title, para_keyword,para_fisrt
 def autosummation(title,doc,model,word_sifs,stop_words,word_idf):
     # get titile+document embedding
     spl_sens = split_sentence(title+ '。'+doc)
-    sens_embedding1 , spl_sens_cleared = sentence_to_vec(spl_sens,100,model,word_sifs,stop_words,)
+    sens_embedding1 , spl_sens_cleared =    sentence_to_vec(spl_sens,100,model,word_sifs,stop_words,)
     # get document keywords via tfidf
     tfidfs = get_tfidfs(doc,word_idf,stop_words,10)
     # get textrank
