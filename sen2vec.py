@@ -5,6 +5,7 @@ from bert_serving.client import BertClient
 
 #followed essay:  simple but tough to beat baseline for sentense embdeeding, without removing 1st priciple component via pca 
 # full code: https://github.com/zangyuchen2008/a_simple_but_tough_to_beat_baseline_for_sentence_embeddings
+# 注意这里并没有使用pca，正确的sif embedding请参考上面链接对应的位置
 def sentence_to_vec(sentence_list, embedding_size,model, word_sifs,stop_words, a=1e-3):
     sentence_set = [] #store weighted sentence vec
     sentence_ls = [] #store sentece list which has vec

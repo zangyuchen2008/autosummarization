@@ -1,20 +1,20 @@
 # coding=utf8
-# import gensim
-# import pickle
-# from gensim.models import Word2Vec,LdaModel,KeyedVectors
-# from gensim.models.callbacks import CallbackAny2Vec
-# import jieba
-# import numpy as np
-# from sklearn.decomposition import PCA
-# from scipy.spatial.distance import cosine
+import gensim
+import pickle
+from gensim.models import Word2Vec,LdaModel,KeyedVectors
+from gensim.models.callbacks import CallbackAny2Vec
+import jieba
+import numpy as np
+from sklearn.decomposition import PCA
+from scipy.spatial.distance import cosine
 import re
-# from collections import Counter
-# import math
-# from sen2vec import sentence_to_vec
-# import os
-# import warnings
-# import networkx as nx 
-# warnings.filterwarnings("ignore")
+from collections import Counter
+import math
+from sen2vec import sentence_to_vec
+import os
+import warnings
+import networkx as nx 
+warnings.filterwarnings("ignore")
 
 # split sentence 同时可以恢复标点符号
 def split_sentence(sentence):
