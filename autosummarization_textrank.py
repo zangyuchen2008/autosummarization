@@ -1,28 +1,28 @@
 # coding=utf8
-import gensim
-import pickle
-from gensim.models import Word2Vec,LdaModel,KeyedVectors
-from gensim.models.callbacks import CallbackAny2Vec
-import jieba
-import numpy as np
-from sklearn.decomposition import PCA
-from scipy.spatial.distance import cosine
+# import gensim
+# import pickle
+# from gensim.models import Word2Vec,LdaModel,KeyedVectors
+# from gensim.models.callbacks import CallbackAny2Vec
+# import jieba
+# import numpy as np
+# from sklearn.decomposition import PCA
+# from scipy.spatial.distance import cosine
 import re
-from collections import Counter
-import math
-from sen2vec import sentence_to_vec
-import os
-import warnings
-import networkx as nx 
-warnings.filterwarnings("ignore")
+# from collections import Counter
+# import math
+# from sen2vec import sentence_to_vec
+# import os
+# import warnings
+# import networkx as nx 
+# warnings.filterwarnings("ignore")
 
-# split sentence
+# split sentence 同时可以恢复标点符号
 def split_sentence(sentence):
     result= re.split('[。?？!！\r\n]',sentence)
     senswith_notation=[]
     for index , s in enumerate(result):
         backward_length = list(map(len,result[:index+1]))
-        total_length = sum(backward_length) + index
+        total_length = sum(backward_length) + index #每次分裂都会少一个字符，所以要加上index
         if total_length< len(sentence):
             notation = sentence[total_length]
             senswith_notation.append(s + notation)
@@ -94,14 +94,14 @@ def autosummation(title,doc,model,word_sifs,stop_words,word_idf):
 
 if __name__ == '__main__':
     # load model
-    model_path = os.path.join(os.path.abspath('./'),'word2vector_Model','word2vec.kv')
-    model = KeyedVectors.load(model_path,mmap='r')
-    # load sif
-    word_sifs =pickle.load(open('data\word_sifs.plk','rb'))
-    # load stopwords
-    stop_words = pickle.load(open('data\stop_words.plk','rb'))
-    # load idf
-    word_idf = pickle.load(open('data\word_idf.plk','rb'))
+    # model_path = os.path.join(os.path.abspath('./'),'word2vector_Model','word2vec.kv')
+    # model = KeyedVectors.load(model_path,mmap='r')
+    # # load sif
+    # word_sifs =pickle.load(open('data\word_sifs.plk','rb'))
+    # # load stopwords
+    # stop_words = pickle.load(open('data\stop_words.plk','rb'))
+    # # load idf
+    # word_idf = pickle.load(open('data\word_idf.plk','rb'))
     # test
     title= '''中美联合研究：3月1日美国或已有9484例新冠感染'''
     doc = '''
@@ -139,6 +139,7 @@ if __name__ == '__main__':
 
 最后，论文提到，由于新冠病毒在非亚洲群体中的传播动态范围几乎没有参考数据，只能基于中国的流行情况判断，因此也存在高估美国感染人数的可能性。毕竟，传播指数与社会经济、文化、环境因素都有关联。
     '''
+    split_sentence(doc)
     # summation output
     result = autosummation(title,doc,model,word_sifs,stop_words,word_idf)
     print(result)
